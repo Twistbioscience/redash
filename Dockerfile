@@ -39,6 +39,7 @@ RUN mkdir -p /opt/redash/supervisord && \
 # Fix permissions
 RUN chown -R redash /opt/redash
 
+
 # Expose ports
 EXPOSE 5000
 EXPOSE 9001

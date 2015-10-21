@@ -1,0 +1,26 @@
+redash:
+  # image: everythingme/redash
+  build: .
+  ports:
+    - "5000:5000"
+  links:
+    - redis
+    - postgres
+  env_file: .env.docker
+redis:
+  image: redis:2.8
+postgres:
+  image: postgres:9.3
+  environment:
+    # - POSTGRES_USER=redash
+    - POSTGRES_PASSWORD=redash123
+  # volumes:
+  #  - /Users/astewart/code/redash/data:/var/lib/postgresql/data
+redash-nginx:
+  image: tjwudi/redash-nginx:1.0
+  ports:
+    - "80:80"
+  # volumes:
+    # - "../redash-nginx/nginx.conf:/etc/nginx/nginx.conf"
+  links:
+    - redash
